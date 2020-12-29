@@ -11,6 +11,8 @@ h1 {
   }
   body {
     margin: 2em;
+    padding-left: 50px;
+    padding-right: 50px;
   }
   body, input[type="text"], button {
     color: #333;
@@ -30,3 +32,15 @@ h1 {
     height: 50px; 
     padding: 1px;
   }
+
+  example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

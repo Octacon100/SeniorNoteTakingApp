@@ -1,150 +1,183 @@
 <div>
-    <label>Description:
-      <input [(ngModel)]="senior.description" placeholder="description"/>
-    </label>
-</div>    
-<div> 
-    <label>Home Visit Date:
-        <input type="date" [(ngModel)]="senior.visitDate" placeholder="Home Visit Date"/>
-    </label>
-</div>
-<div> 
-    <label>Last Doctor Visit:
-        <input type="date" [(ngModel)]="senior.lastDoctorVisitDate" placeholder="Last Doctor Visit Date"/>
-    </label>
-</div>
-<div>
-    <label>Sex:
-        <input [(ngModel)]="senior.sex" placeholder="sex"/>
-    </label>
-</div>    
-<div>
-    <label>Conditions:</label>
-        <textarea class="writeups" [(ngModel)]="senior.conditions" placeholder="Conditions"></textarea>
-</div>    
-<div>
-    <label >Is the Client able to ambulate?
-        <input type="checkbox" [(ngModel)]="senior.canAmbulate"/>
-    </label>
-</div>    
-<div>
-    <label >Does the client need tools or help to ambulate?
-        <input [(ngModel)]="senior.canAmbulateNotes" placeholder="A walker/cane is needed?"/>
-    </label>
-</div>    
-<div>
-    <label >Has the client fallen since the last visit?
-        <input type="checkbox" [(ngModel)]="senior.hadFall"/>
-    </label>
-</div>    
-<div>
-    <label >If the client fell, are there any notes about the fall?
-        <input [(ngModel)]="senior.hadFallNotes" placeholder="Type of fall, where the fall happened, etc."/>
-    </label>
-</div>    
-<div>
-    <label >Has the client had any hospitalizations since the last visit?
-        <input type="checkbox" [(ngModel)]="senior.hadHospitalization"/>
-    </label>
-</div>    
-<div>
-    <label >If the client fell, are there any notes about the hospitalization?
-        <input [(ngModel)]="senior.hadHospitalizationNotes" placeholder="Type of hospitalization, why the client was hospitalized, etc."/>
-    </label>
-</div>    
-<div>
-    <label >Does the client has any skin issues?
-        <input type="checkbox" [(ngModel)]="senior.hadSkinIssues"/>
-    </label>
-</div>    
-<div>
-    <label >If client has skin issues, are there any extra notes on the issue?
-        <input [(ngModel)]="senior.hadSkinIssuesNotes" placeholder="Type of skin issue, when it happened, etc."/>
-    </label>
-</div>    
-<div>
-    <label >Is the Client still eligible?
-        <input type="checkbox" [(ngModel)]="senior.isEligible"/>
-    </label>
-</div>    
-<div>
-    <label>List the Clients critical needs here:</label>
-        <textarea class="writeups" [(ngModel)]="senior.criticalNeeds" placeholder="List the Clients critical needs here"></textarea>
+<form class="example-form">
+    <mat-form-field  >
+      <mat-label>Client Identifier (Not Name)</mat-label>
+      <input matInput name="clientDescription" [(ngModel)]="senior.description" placeholder="Ex. NL">
+    </mat-form-field>
+    <br>
+    <!--
+        <mat-form-field class="example-full-width">
+      <mat-label>Leave a comment</mat-label>
+      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+    -->
     
-</div>    
-<div>
-    <label>List the service plan for the Client here:
-        <input [(ngModel)]="senior.serviceSchedule" placeholder="List the service schedule for the Client here"/>
-    </label>
-</div>    
-<div>
-    <label>List the goals for the Client here:</label>
-        <textarea class="writeups" [(ngModel)]="senior.goals" placeholder="List the goals for the Client here"></textarea>
-</div>    
-<div>
-    <label>List the informal supports for the Client here:</label>
-        <textarea class="writeups" [(ngModel)]="senior.informalSupports" placeholder="List the informal supports for the Client here"></textarea>
-</div>    
-<div>
-    <label>List the formal supports for the Client here:</label>
-    <textarea class="writeups" [(ngModel)]="senior.formalSupports" placeholder="List the formal supports for the Client here"></textarea>
-</div>    
-<div>
-    <label>List the emergency contacts for the Client here:</label>
-    <textarea class="writeups" [(ngModel)]="senior.emergencyContacts" placeholder="List the emergency contacts for the Client here"></textarea>
-</div>    
-<div>
-    <label>Was OPSD sent to admin?
-        <input type="checkbox" [(ngModel)]="senior.oPSD"/>
-    </label>
-</div>    
-<div>
-    <label>Nutrition Score:
-        <input [(ngModel)]="senior.nutritionScore" placeholder=""/>
-    </label>
-</div>    
-<div> 
-    <label>Client Income:
-        <input [(ngModel)]="senior.clientIncome" placeholder="Client Income"/>
-    </label>
-</div>    
-<div>
-    <label>Were the public health benefits received reviewed?
-        <input type="checkbox" [(ngModel)]="senior.publicHealthBenefitsReviewed"/>
-    </label>
-</div>    
-<div> 
-    <label>What is the cognitive health status of the client?</label>
-        <textarea class="writeups" [(ngModel)]="senior.cognitiveHealthStatus" placeholder="Cognitive Health Status"></textarea>
-    
-</div>    
-<div>
-    <label>What is the mental health status of the client?</label>
-        <textarea class="writeups" [(ngModel)]="senior.mentalHealthStatus" placeholder="Mental Health Status"></textarea>
-</div>    
-<div>
-    <label>Anything extra to note about the client?</label>  
-        <textarea class="writeups" [(ngModel)]="senior.extraNotes" placeholder="Extra Notes"></textarea>
-    
-    </div>    
-<div>
-    <label>Client risk level:
-        <input [(ngModel)]="senior.riskLevel" placeholder="Client risk level"/>
-    </label>
-</div>    
-<div> 
-    <label>Next Home Visit Date:
-        <input type="date" [(ngModel)]="senior.nextHomeVisitDate" placeholder="Next Home Visit Date"/>
-    </label>
-</div>   
+   <mat-form-field >
+        <mat-label>Home Visit Date:</mat-label>
+        <input matInput name="homeVisitDate" [(ngModel)]="senior.visitDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field >
+        <mat-label>Last Doctor Visit:</mat-label>
+        <input matInput name="lastDoctorVisitDate" [(ngModel)]="senior.lastDoctorVisitDate" [matDatepicker]="picker2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field >
+        <mat-label>Sex</mat-label>
+        <input matInput name="clientSex" [(ngModel)]="senior.sex" placeholder="Sex">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Conditions</mat-label>
+        <textarea matInput name="clientConditions" [(ngModel)]="senior.conditions" placeholder="Conditions"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-checkbox name="clientCanAmbulate" labelPosition="before" [(ngModel)]="senior.canAmbulate">Is the Client able to ambulate?</mat-checkbox>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Does the client need tools or help to ambulate?</mat-label>
+        <input matInput name="clientAmbulateNotes" [(ngModel)]="senior.canAmbulateNotes" placeholder="A walker/cane is needed?">
+      </mat-form-field>
+
+      <mat-checkbox name="clientHadFall" labelPosition="before" [(ngModel)]="senior.hadFall">Has the client fallen since the last visit?</mat-checkbox>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>If the client fell, are there any notes about the fall?</mat-label>
+        <input matInput name="clienthadFallNotes" [(ngModel)]="senior.hadFallNotes" placeholder="Type of fall, where the fall happened, etc.">
+      </mat-form-field>
+      <br>
+
+      <mat-checkbox name="clienthadHospitalization" labelPosition="before" [(ngModel)]="senior.hadHospitalization">Has the client had any hospitalizations since the last visit?</mat-checkbox>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>If the client went to hospital, are there any notes about the hospitalization?</mat-label>
+        <input matInput name="clienthadHospitalizationNotes" [(ngModel)]="senior.hadHospitalizationNotes" placeholder="Type of hospitalization, why the client was hospitalized, etc.">
+      </mat-form-field>
+      <br>
+
+      <mat-checkbox name="clienthadSkinIssues" labelPosition="before" [(ngModel)]="senior.hadSkinIssues">Does the client has any skin issues?</mat-checkbox>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>If client has skin issues, are there any extra notes on the issue?</mat-label>
+        <input matInput name="clienthadSkinIssuesNotes" [(ngModel)]="senior.hadSkinIssuesNotes" placeholder="Type of skin issue, when it happened, etc.">
+      </mat-form-field>
+      <br>
+
+      <mat-checkbox name="clientisEligible" labelPosition="before" [(ngModel)]="senior.isEligible">Is the Client still eligible?</mat-checkbox>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Client Critical Needs</mat-label>
+        <textarea matInput name="clientcriticalNeeds" [(ngModel)]="senior.criticalNeeds" placeholder="List the Clients critical needs here"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Client Service Plan</mat-label>
+        <input matInput name="clientserviceSchedule" [(ngModel)]="senior.serviceSchedule" placeholder="List the service schedule for the Client here">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Client Goals</mat-label>
+        <textarea matInput name="clientGoals" [(ngModel)]="senior.goals" placeholder="List the goals for the client here"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Client Informal Supports</mat-label>
+        <textarea matInput name="clientInformalSupports" [(ngModel)]="senior.informalSupports" placeholder="List the informal supports for the Client here"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Client Formal Supports</mat-label>
+        <textarea matInput name="clientformalSupports" [(ngModel)]="senior.formalSupports" placeholder="List the formal supports for the client here"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Client Emergency Contacts</mat-label>
+        <textarea matInput name="clientemergencyContacts" [(ngModel)]="senior.emergencyContacts" placeholder="List the emergency contacts for the client here"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-checkbox name="clientoPSD" labelPosition="before" [(ngModel)]="senior.oPSD">Was OPSD sent to admin?</mat-checkbox>
+      <br>
+
+      <mat-form-field >
+        <mat-label>Client Nutrition Score</mat-label>
+        <input matInput name="clientnutritionScore" [(ngModel)]="senior.nutritionScore" placeholder="">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field >
+        <mat-label>Client Income</mat-label>
+        <input matInput name="clientclientIncome" [(ngModel)]="senior.clientIncome" placeholder="">
+      </mat-form-field>
+      <br>
+
+      <mat-checkbox name="clientpublicHealthBenefitsReviewed" labelPosition="before" [(ngModel)]="senior.publicHealthBenefitsReviewed">Were the public health benefits received reviewed?</mat-checkbox>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>What is the cognitive health status of the client?</mat-label>
+        <textarea matInput name="clientcognitiveHealthStatus" [(ngModel)]="senior.cognitiveHealthStatus" placeholder="Cognitive Health Status"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>What is the mental health status of the client?</mat-label>
+        <textarea matInput name="clientmentalHealthStatus" [(ngModel)]="senior.mentalHealthStatus" placeholder="Mental Health Status"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Anything extra to note about the client?</mat-label>
+        <textarea matInput name="clientextraNotes" [(ngModel)]="senior.extraNotes" placeholder="Extra Notes"></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field >
+        <mat-label>Client Risk Level</mat-label>
+        <input matInput name="clientriskLevel" [(ngModel)]="senior.riskLevel" placeholder="Client risk level">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field >
+        <mat-label>Next Home Visit Date:</mat-label>
+        <input matInput name="nextHomeVisitDate" [(ngModel)]="senior.nextHomeVisitDate" [matDatepicker]="picker3">
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+    <br>
+
+  </form>
+</div>
 
 <div>
-    <button (click)="generateReport()">Generate Report</button>
+    <button mat-raised-button color="primary" (click)="generateReport()">Generate Report</button>
 </div>
 
 
-<h3>Here is your visit summary:</h3>   
+<h2>Visit summary:</h2>   
 
 <div>
-    <textarea name="message" class="summaryText" rows="8" cols="20" [(ngModel)]="senior.finalVisitReport"></textarea>
+    <!--<textarea name="message" class="summaryText" rows="8" cols="20" [(ngModel)]="senior.finalVisitReport"></textarea>-->
+    <mat-form-field class="summaryText" appearance="outline">
+        <textarea matInput name="message" class="summaryText"  [(ngModel)]="senior.finalVisitReport"></textarea>
+    </mat-form-field>
+    
 </div>    

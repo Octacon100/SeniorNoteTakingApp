@@ -1,0 +1,150 @@
+<div>
+    <label>Description:
+      <input [(ngModel)]="senior.description" placeholder="description"/>
+    </label>
+</div>    
+<div> 
+    <label>Home Visit Date:
+        <input type="date" [(ngModel)]="senior.visitDate" placeholder="Home Visit Date"/>
+    </label>
+</div>
+<div> 
+    <label>Last Doctor Visit:
+        <input type="date" [(ngModel)]="senior.lastDoctorVisitDate" placeholder="Last Doctor Visit Date"/>
+    </label>
+</div>
+<div>
+    <label>Sex:
+        <input [(ngModel)]="senior.sex" placeholder="sex"/>
+    </label>
+</div>    
+<div>
+    <label>Conditions:</label>
+        <textarea class="writeups" [(ngModel)]="senior.conditions" placeholder="Conditions"></textarea>
+</div>    
+<div>
+    <label >Is the Client able to ambulate?
+        <input type="checkbox" [(ngModel)]="senior.canAmbulate"/>
+    </label>
+</div>    
+<div>
+    <label >Does the client need tools or help to ambulate?
+        <input [(ngModel)]="senior.canAmbulateNotes" placeholder="A walker/cane is needed?"/>
+    </label>
+</div>    
+<div>
+    <label >Has the client fallen since the last visit?
+        <input type="checkbox" [(ngModel)]="senior.hadFall"/>
+    </label>
+</div>    
+<div>
+    <label >If the client fell, are there any notes about the fall?
+        <input [(ngModel)]="senior.hadFallNotes" placeholder="Type of fall, where the fall happened, etc."/>
+    </label>
+</div>    
+<div>
+    <label >Has the client had any hospitalizations since the last visit?
+        <input type="checkbox" [(ngModel)]="senior.hadHospitalization"/>
+    </label>
+</div>    
+<div>
+    <label >If the client fell, are there any notes about the hospitalization?
+        <input [(ngModel)]="senior.hadHospitalizationNotes" placeholder="Type of hospitalization, why the client was hospitalized, etc."/>
+    </label>
+</div>    
+<div>
+    <label >Does the client has any skin issues?
+        <input type="checkbox" [(ngModel)]="senior.hadSkinIssues"/>
+    </label>
+</div>    
+<div>
+    <label >If client has skin issues, are there any extra notes on the issue?
+        <input [(ngModel)]="senior.hadSkinIssuesNotes" placeholder="Type of skin issue, when it happened, etc."/>
+    </label>
+</div>    
+<div>
+    <label >Is the Client still eligible?
+        <input type="checkbox" [(ngModel)]="senior.isEligible"/>
+    </label>
+</div>    
+<div>
+    <label>List the Clients critical needs here:</label>
+        <textarea class="writeups" [(ngModel)]="senior.criticalNeeds" placeholder="List the Clients critical needs here"></textarea>
+    
+</div>    
+<div>
+    <label>List the service plan for the Client here:
+        <input [(ngModel)]="senior.serviceSchedule" placeholder="List the service schedule for the Client here"/>
+    </label>
+</div>    
+<div>
+    <label>List the goals for the Client here:</label>
+        <textarea class="writeups" [(ngModel)]="senior.goals" placeholder="List the goals for the Client here"></textarea>
+</div>    
+<div>
+    <label>List the informal supports for the Client here:</label>
+        <textarea class="writeups" [(ngModel)]="senior.informalSupports" placeholder="List the informal supports for the Client here"></textarea>
+</div>    
+<div>
+    <label>List the formal supports for the Client here:</label>
+    <textarea class="writeups" [(ngModel)]="senior.formalSupports" placeholder="List the formal supports for the Client here"></textarea>
+</div>    
+<div>
+    <label>List the emergency contacts for the Client here:</label>
+    <textarea class="writeups" [(ngModel)]="senior.emergencyContacts" placeholder="List the emergency contacts for the Client here"></textarea>
+</div>    
+<div>
+    <label>Was OPSD sent to admin?
+        <input type="checkbox" [(ngModel)]="senior.oPSD"/>
+    </label>
+</div>    
+<div>
+    <label>Nutrition Score:
+        <input [(ngModel)]="senior.nutritionScore" placeholder=""/>
+    </label>
+</div>    
+<div> 
+    <label>Client Income:
+        <input [(ngModel)]="senior.clientIncome" placeholder="Client Income"/>
+    </label>
+</div>    
+<div>
+    <label>Were the public health benefits received reviewed?
+        <input type="checkbox" [(ngModel)]="senior.publicHealthBenefitsReviewed"/>
+    </label>
+</div>    
+<div> 
+    <label>What is the cognitive health status of the client?</label>
+        <textarea class="writeups" [(ngModel)]="senior.cognitiveHealthStatus" placeholder="Cognitive Health Status"></textarea>
+    
+</div>    
+<div>
+    <label>What is the mental health status of the client?</label>
+        <textarea class="writeups" [(ngModel)]="senior.mentalHealthStatus" placeholder="Mental Health Status"></textarea>
+</div>    
+<div>
+    <label>Anything extra to note about the client?</label>  
+        <textarea class="writeups" [(ngModel)]="senior.extraNotes" placeholder="Extra Notes"></textarea>
+    
+    </div>    
+<div>
+    <label>Client risk level:
+        <input [(ngModel)]="senior.riskLevel" placeholder="Client risk level"/>
+    </label>
+</div>    
+<div> 
+    <label>Next Home Visit Date:
+        <input type="date" [(ngModel)]="senior.nextHomeVisitDate" placeholder="Next Home Visit Date"/>
+    </label>
+</div>   
+
+<div>
+    <button (click)="generateReport()">Generate Report</button>
+</div>
+
+
+<h3>Here is your visit summary:</h3>   
+
+<div>
+    <textarea name="message" class="summaryText" rows="8" cols="20" [(ngModel)]="senior.finalVisitReport"></textarea>
+</div>    

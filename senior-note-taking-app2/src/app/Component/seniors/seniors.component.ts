@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
 export class SeniorsComponent implements OnInit {
   senior: Senior  = {
     id: 1,
-    description: "The old lady in the shoe.",
+    description: "",
     visitDate: Date(),
     lastDoctorVisitDate: "",
     sex: "",
@@ -35,9 +35,9 @@ export class SeniorsComponent implements OnInit {
     nutritionScore: 0,
     clientIncome:  "",
     publicHealthBenefitsReviewed: false,
-    cognitiveHealthStatus:  "The client's cognitive health status is...",
-    mentalHealthStatus:  "The client's mental health status is...",
-    extraNotes: "Additional notes on this client include...",
+    cognitiveHealthStatus:  "",
+    mentalHealthStatus:  "",
+    extraNotes: "",
     riskLevel: "",
     nextHomeVisitDate: "",
     finalVisitReport: ""
@@ -62,30 +62,31 @@ export class SeniorsComponent implements OnInit {
 
   generateReport(){
     //this.senior.finalVisitReport = "Generating a report for you..." + this.newline;
+    let clientString: string = this.getClientDescriptionString()
     this.senior.finalVisitReport = "";
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateIntro();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateLastDoctorVisitString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateConditionString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateAmubulationString();
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateIntro(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateLastDoctorVisitString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateConditionString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateAmubulationString(clientString);
 
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateFallsString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateHospitalizationString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSkinIssuesString();
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateFallsString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateHospitalizationString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSkinIssuesString(clientString);
 
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateEligibleString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateServicePlanString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSupportStrings("informal supports");
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSupportStrings("formal supports");
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSupportStrings("emergency contacts");
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateEligibleString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateServicePlanString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSupportStrings(clientString, "informal supports");
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSupportStrings(clientString,"formal supports");
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateSupportStrings(clientString,"emergency contacts");
     this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateOPSDString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateNutritionScoreString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateClientIncomeString();
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generatePublicHealthBenefitsString();
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateNutritionScoreString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateClientIncomeString(clientString);
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generatePublicHealthBenefitsString(clientString);
     this.senior.finalVisitReport = this.senior.finalVisitReport + this.senior.mentalHealthStatus + this.newline + this.newline;
     this.senior.finalVisitReport = this.senior.finalVisitReport + this.senior.cognitiveHealthStatus + this.newline + this.newline;
     this.senior.finalVisitReport = this.senior.finalVisitReport + this.senior.extraNotes + this.newline + this.newline;
-    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateRiskScoreString();
-    this.senior.finalVisitReport =this.senior.finalVisitReport + this.generateNextVisitString();
+    this.senior.finalVisitReport = this.senior.finalVisitReport + this.generateRiskScoreString(clientString);
+    this.senior.finalVisitReport =this.senior.finalVisitReport + this.generateNextVisitString(clientString);
   }
 
   //Not sure where to put this right now, this will do.
@@ -100,14 +101,13 @@ export class SeniorsComponent implements OnInit {
     return randomString;
   }
 
-  generateIntro(){
+  generateIntro(clientString:string){
     let insertDate: string = this.formatDateForReport(this.senior.visitDate);
-    let clientString: string = this.getClientDescriptionString()
     let introStrings: string[] = [
-      "This is a summary report for [" + this.senior.description + "] from a visit performed on " + insertDate + ".",
-      "On " + insertDate + ", I visited [" + this.senior.description + "] and here are my findings.",
+      "This is a summary report for "+ clientString + " from a visit performed on " + insertDate + ".",
+      "On " + insertDate + ", I visited "+ clientString + " and here are my findings.",
       clientString + " was visited on " + insertDate + " and the following findings were noted.",
-      "I met [" + this.senior.description + "] on " + insertDate + " and here are my findings from the meeting."
+      "I met " + clientString + " on " + insertDate + " and here are my findings from the meeting."
     ];
     return this.pullStringFromArray(introStrings);
   }
@@ -116,8 +116,7 @@ export class SeniorsComponent implements OnInit {
     return this.datepipe.transform(dateToFormat, "MM/dd/yyy");
   }
 
-  generateConditionString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateConditionString(clientString:string){
     let conditionStrings: string[] = [
       clientString + " has the following conditions: " + this.senior.conditions,
       "The client's medical conditions include: " + this.senior.conditions,
@@ -131,8 +130,7 @@ export class SeniorsComponent implements OnInit {
     return this.senior.description;
   }
 
-  generateAmubulationString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateAmubulationString(clientString:string){
     let noDeviceAmbulateStrings: string[] = [
       "The client uses no device to ambulate.",
       "The client is able to ambulate without a device.",
@@ -172,8 +170,7 @@ export class SeniorsComponent implements OnInit {
     return returnString;
   }
 
-  generateEligibleString() {
-    let clientString: string = this.getClientDescriptionString()
+  generateEligibleString(clientString:string) {
     let eligibleStrings: string[] = [
       "The client is still eligible for this program.",
       clientString + " is still eligible for this program.",
@@ -198,21 +195,19 @@ export class SeniorsComponent implements OnInit {
     return returnString 
   }
 
-  generateServicePlanString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateServicePlanString(clientString:string){
     let randomStrings: string[] = [
       "The client's service plan is " + this.senior.serviceSchedule,
       clientString + "'s service plan is " + this.senior.serviceSchedule,
       "The service plan that the client is currently on is " + this.senior.serviceSchedule,
-      "The service plan that [" + this.senior.description + "] is currently on is " + this.senior.serviceSchedule,
+      "The service plan that " + clientString + " is currently on is " + this.senior.serviceSchedule,
     ]
     let returnString: string;
     returnString = this.pullStringFromArray(randomStrings) ;    
     return returnString
   }
 
-  generateGoalsString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateGoalsString(clientString:string){
     let randomStrings: string[] = [
       "The client's goal is: \"" ,
       clientString + "'s current goal is: \"",
@@ -224,12 +219,11 @@ export class SeniorsComponent implements OnInit {
   }
 
 
-  generateSupportStrings(supportType:string){
-    let clientString: string = this.getClientDescriptionString()
+  generateSupportStrings(clientString:string, supportType:string){
     let randomStrings: string[] = [
       "The client's " + supportType + " are ",
       "Current " + supportType + " include ",
-      "Current " + supportType + " for [" + this.senior.description + "] are ",
+      "Current " + supportType + " for " + clientString + " are ",
       "This client's current " + supportType + " include "
     ]
     let returnString: string;
@@ -253,7 +247,6 @@ export class SeniorsComponent implements OnInit {
   }
 
   generateOPSDString(){
-    let clientString: string = this.getClientDescriptionString()
     let randomStrings: string[] = [
       "The OPSD form has been submitted to administration staff.",
       "The OPSD form has been sent to admin.",
@@ -265,8 +258,7 @@ export class SeniorsComponent implements OnInit {
     return returnString
   }
 
-  generateNutritionScoreString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateNutritionScoreString(clientString:string){
     let randomStrings: string[] = [
       "The nutrition score was assessed and the nutrition score is ",
       clientString + " has a nutrition score of ",
@@ -278,8 +270,7 @@ export class SeniorsComponent implements OnInit {
     return returnString
   }
 
-  generateClientIncomeString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateClientIncomeString(clientString:string){
     let randomStrings: string[] = [
       "The client has a yearly income of: ",
       clientString + "'s  income is: ",
@@ -291,8 +282,7 @@ export class SeniorsComponent implements OnInit {
     return returnString
   } 
   
-  generatePublicHealthBenefitsString(){
-    let clientString: string = this.getClientDescriptionString()
+  generatePublicHealthBenefitsString(clientString:string){
     let randomStrings: string[] = [
       "The client has had their public health benefits explained to them and options open to them.",
       "The client understands their public health benefits and how to claim them.",
@@ -304,8 +294,7 @@ export class SeniorsComponent implements OnInit {
     return returnString
   }
 
-  generateRiskScoreString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateRiskScoreString(clientString:string){
     let randomStrings: string[] = [
       "The risk score was assessed and the risk score is ",
       clientString + " has a risk score of ",
@@ -317,8 +306,7 @@ export class SeniorsComponent implements OnInit {
     return returnString
   }
 
-  generateNextVisitString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateNextVisitString(clientString:string){
     let inputDate:string = this.formatDateForReport(this.senior.nextHomeVisitDate);
     let randomStrings: string[] = [
       "The next home-visit assessment will occur on " + inputDate,
@@ -331,8 +319,7 @@ export class SeniorsComponent implements OnInit {
     return returnString
   }
 
-  generateLastDoctorVisitString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateLastDoctorVisitString(clientString:string){
     let inputString: string = this.formatDateForReport(this.senior.lastDoctorVisitDate); 
     let randomStrings: string[] = [
       "The client's last doctor visit was on " + inputString,
@@ -345,8 +332,7 @@ export class SeniorsComponent implements OnInit {
     return returnString
   }
 
-  generateFallsString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateFallsString(clientString:string){
     let noFallStrings: string[] = [
       "The client has not fallen since the last visit.",
       "The client has not had any falls recently.",
@@ -372,8 +358,7 @@ export class SeniorsComponent implements OnInit {
     return returnString;
   }
 
-  generateHospitalizationString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateHospitalizationString(clientString:string){
     let noHospitalizationStrings: string[] = [
       "The client has been to hospital since the last visit.",
       "The client has not been to hospital recently.",
@@ -399,8 +384,7 @@ export class SeniorsComponent implements OnInit {
     return returnString;
   }
 
-  generateSkinIssuesString(){
-    let clientString: string = this.getClientDescriptionString()
+  generateSkinIssuesString(clientString:string){
     let noSkinIssuesStrings: string[] = [
       "The client has been to hospital since the last visit.",
       "The client has not been to hospital recently.",

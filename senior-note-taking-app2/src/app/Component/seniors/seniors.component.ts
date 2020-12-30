@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
 export class SeniorsComponent implements OnInit {
   senior: Senior  = {
     id: 1,
-    description: "",
+    description: "Testing deploy worked.",
     visitDate: Date(),
     lastDoctorVisitDate: "",
     sex: "",

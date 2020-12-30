@@ -8,28 +8,35 @@ on:
     branches:
       - main
 
+env:
+  AZURE_WEBAPP_NAME: senior-note-taking    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './senior-note-taking-app2/dist/senior-note-taking-app2'      # set this to the path to your web app project
+  NODE_VERSION: '12.14'                # set this to the node version to use
+
 jobs:
-  build-and-deploy:
-    runs-on: windows-latest
+  build-angular-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: senior-note-taking-app2
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
       with:
-        dotnet-version: '3.1.102'
+        node-version: ${{ env.NODE_VERSION }}
 
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+    - name: npm install and build
+      run: |
+        npm ci
+        npm run build --prod
+    
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'senior-note-taking'
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_bcec347943064a05aead2a56536854e7 }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

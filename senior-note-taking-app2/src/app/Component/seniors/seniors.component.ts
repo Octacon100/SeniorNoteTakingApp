@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import {Senior} from '../../Interface/senior';
 import { DatePipe } from '@angular/common';

@@ -1,0 +1,13 @@
+Get django:
+https://www.djangoproject.com/start/
+
+
+Get djongo:
+https://pypi.org/project/djongo/
+
+Database field types:
+https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types
+
+How models work:
+https://docs.djangoproject.com/en/3.1/ref/models/instances/#django.db.models.Model
+

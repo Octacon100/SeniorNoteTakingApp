@@ -3,7 +3,7 @@
 <form class="example-form">
     <mat-form-field  >
       <mat-label>Client Identifier (Not Name)</mat-label>
-      <input matInput name="clientDescription" [(ngModel)]="senior.description" placeholder="Ex. NL">
+      <input matInput name="clientDescription" [(ngModel)]="seniorVisit.description" placeholder="Ex. NL">
     </mat-form-field>
     <br>
     <!--
@@ -13,9 +13,15 @@
     </mat-form-field>
     -->
     
+    <mat-form-field  >
+      <mat-label>Client or Member (No Caps)</mat-label>
+      <input matInput name="clientOrMember" [(ngModel)]="seniorVisit.clientOrMember" placeholder="client">
+    </mat-form-field>
+    <br>
+
    <mat-form-field >
         <mat-label>Home Visit Date:</mat-label>
-        <input matInput name="homeVisitDate" [(ngModel)]="senior.visitDate" [matDatepicker]="picker">
+        <input matInput name="homeVisitDate" [(ngModel)]="seniorVisit.visitDate" [matDatepicker]="picker">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -23,7 +29,7 @@
 
     <mat-form-field >
         <mat-label>Last Doctor Visit:</mat-label>
-        <input matInput name="lastDoctorVisitDate" [(ngModel)]="senior.lastDoctorVisitDate" [matDatepicker]="picker2">
+        <input matInput name="lastDoctorVisitDate" [(ngModel)]="seniorVisit.lastDoctorVisitDate" [matDatepicker]="picker2">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
@@ -31,138 +37,141 @@
 
     <mat-form-field >
         <mat-label>Sex</mat-label>
-        <input matInput name="clientSex" [(ngModel)]="senior.sex" placeholder="Sex">
+        <input matInput name="clientSex" [(ngModel)]="seniorVisit.sex" placeholder="Sex">
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Conditions</mat-label>
-        <textarea matInput name="clientConditions" [(ngModel)]="senior.conditions" placeholder="Conditions"></textarea>
+        <textarea matInput name="clientConditions" [(ngModel)]="seniorVisit.conditions" placeholder="Conditions"></textarea>
       </mat-form-field>
       <br>
 
-      <mat-checkbox name="clientCanAmbulate" labelPosition="before" [(ngModel)]="senior.canAmbulate">Is the Client able to ambulate?</mat-checkbox>
+      <mat-checkbox name="clientCanAmbulate" labelPosition="before" [(ngModel)]="seniorVisit.canAmbulate">Is the Client able to ambulate?</mat-checkbox>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Does the client need tools or help to ambulate?</mat-label>
-        <input matInput name="clientAmbulateNotes" [(ngModel)]="senior.canAmbulateNotes" placeholder="A walker/cane is needed?">
+        <input matInput name="clientAmbulateNotes" [(ngModel)]="seniorVisit.canAmbulateNotes" placeholder="A walker/cane is needed?">
       </mat-form-field>
 
-      <mat-checkbox name="clientHadFall" labelPosition="before" [(ngModel)]="senior.hadFall">Has the client fallen since the last visit?</mat-checkbox>
+      <mat-checkbox name="clientHadFall" labelPosition="before" [(ngModel)]="seniorVisit.hadFall">Has the client fallen since the last visit?</mat-checkbox>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>If the client fell, are there any notes about the fall?</mat-label>
-        <input matInput name="clienthadFallNotes" [(ngModel)]="senior.hadFallNotes" placeholder="Type of fall, where the fall happened, etc.">
+        <input matInput name="clienthadFallNotes" [(ngModel)]="seniorVisit.hadFallNotes" placeholder="Type of fall, where the fall happened, etc.">
       </mat-form-field>
       <br>
 
-      <mat-checkbox name="clienthadHospitalization" labelPosition="before" [(ngModel)]="senior.hadHospitalization">Has the client had any hospitalizations since the last visit?</mat-checkbox>
+      <mat-checkbox name="clienthadHospitalization" labelPosition="before" [(ngModel)]="seniorVisit.hadHospitalization">Has the client had any hospitalizations since the last visit?</mat-checkbox>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>If the client went to hospital, are there any notes about the hospitalization?</mat-label>
-        <input matInput name="clienthadHospitalizationNotes" [(ngModel)]="senior.hadHospitalizationNotes" placeholder="Type of hospitalization, why the client was hospitalized, etc.">
+        <input matInput name="clienthadHospitalizationNotes" [(ngModel)]="seniorVisit.hadHospitalizationNotes" placeholder="Type of hospitalization, why the client was hospitalized, etc.">
       </mat-form-field>
       <br>
+    
+      <label id="nextVisitDateExp" class="example-full-width">Will generate a label like: "The next home-visit assessment will occur {{seniorVisit.hadHospitalizationNotes}}"</label>
+      <br>
 
-      <mat-checkbox name="clienthadSkinIssues" labelPosition="before" [(ngModel)]="senior.hadSkinIssues">Does the client has any skin issues?</mat-checkbox>
+      <mat-checkbox name="clienthadSkinIssues" labelPosition="before" [(ngModel)]="seniorVisit.hadSkinIssues">Does the client has any skin issues?</mat-checkbox>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>If client has skin issues, are there any extra notes on the issue?</mat-label>
-        <input matInput name="clienthadSkinIssuesNotes" [(ngModel)]="senior.hadSkinIssuesNotes" placeholder="Type of skin issue, when it happened, etc.">
+        <input matInput name="clienthadSkinIssuesNotes" [(ngModel)]="seniorVisit.hadSkinIssuesNotes" placeholder="Type of skin issue, when it happened, etc.">
       </mat-form-field>
       <br>
 
-      <mat-checkbox name="clientisEligible" labelPosition="before" [(ngModel)]="senior.isEligible">Is the Client still eligible?</mat-checkbox>
+      <mat-checkbox name="clientisEligible" labelPosition="before" [(ngModel)]="seniorVisit.isEligible">Is the Client still eligible?</mat-checkbox>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Client Critical Needs</mat-label>
-        <textarea matInput name="clientcriticalNeeds" [(ngModel)]="senior.criticalNeeds" placeholder="List the Clients critical needs here"></textarea>
+        <textarea matInput name="clientcriticalNeeds" [(ngModel)]="seniorVisit.criticalNeeds" placeholder="List the Clients critical needs here"></textarea>
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Client Service Plan</mat-label>
-        <input matInput name="clientserviceSchedule" [(ngModel)]="senior.serviceSchedule" placeholder="List the service schedule for the Client here">
+        <input matInput name="clientserviceSchedule" [(ngModel)]="seniorVisit.serviceSchedule" placeholder="List the service schedule for the Client here">
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Client Goals</mat-label>
-        <textarea matInput name="clientGoals" [(ngModel)]="senior.goals" placeholder="List the goals for the client here"></textarea>
+        <textarea matInput name="clientGoals" [(ngModel)]="seniorVisit.goals" placeholder="List the goals for the client here"></textarea>
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Client Informal Supports</mat-label>
-        <textarea matInput name="clientInformalSupports" [(ngModel)]="senior.informalSupports" placeholder="List the informal supports for the Client here"></textarea>
+        <textarea matInput name="clientInformalSupports" [(ngModel)]="seniorVisit.informalSupports" placeholder="List the informal supports for the Client here"></textarea>
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Client Formal Supports</mat-label>
-        <textarea matInput name="clientformalSupports" [(ngModel)]="senior.formalSupports" placeholder="List the formal supports for the client here"></textarea>
+        <textarea matInput name="clientformalSupports" [(ngModel)]="seniorVisit.formalSupports" placeholder="List the formal supports for the client here"></textarea>
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Client Emergency Contacts</mat-label>
-        <textarea matInput name="clientemergencyContacts" [(ngModel)]="senior.emergencyContacts" placeholder="List the emergency contacts for the client here"></textarea>
+        <textarea matInput name="clientemergencyContacts" [(ngModel)]="seniorVisit.emergencyContacts" placeholder="List the emergency contacts for the client here"></textarea>
       </mat-form-field>
       <br>
 
-      <mat-checkbox name="clientoPSD" labelPosition="before" [(ngModel)]="senior.oPSD">Was OPSD sent to admin?</mat-checkbox>
+      <mat-checkbox name="clientoPSD" labelPosition="before" [(ngModel)]="seniorVisit.oPSD">Was OPSD sent to admin?</mat-checkbox>
       <br>
 
       <mat-form-field >
         <mat-label>Client Nutrition Score</mat-label>
-        <input matInput name="clientnutritionScore" [(ngModel)]="senior.nutritionScore" placeholder="">
+        <input matInput name="clientnutritionScore" [(ngModel)]="seniorVisit.nutritionScore" placeholder="">
       </mat-form-field>
       <br>
 
       <mat-form-field >
         <mat-label>Client Income</mat-label>
-        <input matInput name="clientclientIncome" [(ngModel)]="senior.clientIncome" placeholder="">
+        <input matInput name="clientclientIncome" [(ngModel)]="seniorVisit.clientIncome" placeholder="">
       </mat-form-field>
       <br>
 
-      <mat-checkbox name="clientpublicHealthBenefitsReviewed" labelPosition="before" [(ngModel)]="senior.publicHealthBenefitsReviewed">Were the public health benefits received reviewed?</mat-checkbox>
+      <mat-checkbox name="clientpublicHealthBenefitsReviewed" labelPosition="before" [(ngModel)]="seniorVisit.publicHealthBenefitsReviewed">Were the public health benefits received reviewed?</mat-checkbox>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>What is the cognitive health status of the client?</mat-label>
-        <textarea matInput name="clientcognitiveHealthStatus" [(ngModel)]="senior.cognitiveHealthStatus" placeholder="The client's cognitive health status is..."></textarea>
+        <textarea matInput name="clientcognitiveHealthStatus" [(ngModel)]="seniorVisit.cognitiveHealthStatus" placeholder="The client's cognitive health status is..."></textarea>
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>What is the mental health status of the client?</mat-label>
-        <textarea matInput name="clientmentalHealthStatus" [(ngModel)]="senior.mentalHealthStatus" placeholder="The client's mental health status is..."></textarea>
+        <textarea matInput name="clientmentalHealthStatus" [(ngModel)]="seniorVisit.mentalHealthStatus" placeholder="The client's mental health status is..."></textarea>
       </mat-form-field>
       <br>
 
       <mat-form-field class="example-full-width">
         <mat-label>Anything extra to note about the client?</mat-label>
-        <textarea matInput name="clientextraNotes" [(ngModel)]="senior.extraNotes" placeholder="Additional notes on this client include..."></textarea>
+        <textarea matInput name="clientextraNotes" [(ngModel)]="seniorVisit.extraNotes" placeholder="Additional notes on this client include..."></textarea>
       </mat-form-field>
       <br>
 
       <mat-form-field >
         <mat-label>Client Risk Level</mat-label>
-        <input matInput name="clientriskLevel" [(ngModel)]="senior.riskLevel" placeholder="Client risk level">
+        <input matInput name="clientriskLevel" [(ngModel)]="seniorVisit.riskLevel" placeholder="Client risk level">
       </mat-form-field>
       <br>
 
       <mat-form-field >
         <mat-label>Next Home Visit Date:</mat-label>
-        <input matInput name="nextHomeVisitDate" [(ngModel)]="senior.nextHomeVisitDate" [matDatepicker]="picker3">
-        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-        <mat-datepicker #picker3></mat-datepicker>
+        <input matInput name="nextHomeVisitDate" [(ngModel)]="seniorVisit.nextHomeVisitDate" placeholder="in three months time">
     </mat-form-field>
+    <br>
+    <label id="nextVisitDateExp" class="example-full-width">Will generate a label like: "The next home-visit assessment will occur {{seniorVisit.nextHomeVisitDate}}"</label>
     <br>
 
   </form>
@@ -176,9 +185,9 @@
 <h2>Visit summary:</h2>   
 
 <div>
-    <!--<textarea name="message" class="summaryText" rows="8" cols="20" [(ngModel)]="senior.finalVisitReport"></textarea>-->
+    <!--<textarea name="message" class="summaryText" rows="8" cols="20" [(ngModel)]="seniorVisit.finalVisitReport"></textarea>-->
     <mat-form-field class="summaryText" appearance="outline">
-        <textarea matInput name="message" class="summaryText"  [(ngModel)]="senior.finalVisitReport"></textarea>
+        <textarea matInput name="message" class="summaryText"  [(ngModel)]="seniorVisit.finalVisitReport"></textarea>
     </mat-form-field>
     
 </div>    
